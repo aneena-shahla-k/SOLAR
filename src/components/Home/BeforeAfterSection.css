@@ -1,0 +1,384 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+/* =========================================================
+   BEFORE -> AFTER SECTION (LIGHT SAGE THEME)
+========================================================= */
+
+.ba-section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  padding: 130px 0 160px;
+  overflow: hidden;
+
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #f7faf8;
+  color: #1f3e35;
+}
+
+.ba-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      circle at 50% 25%,
+      rgba(143, 183, 167, 0.16),
+      transparent 60%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.45) 0%,
+      rgba(221, 233, 226, 0.5) 100%
+    );
+  z-index: 1;
+}
+
+.ba-container {
+  position: relative;
+  z-index: 2;
+  width: min(1200px, calc(100% - 48px));
+  margin: 0 auto;
+}
+
+/* =========================================================
+   INTRO HEADER
+========================================================= */
+
+.ba-intro {
+  max-width: 850px;
+  margin-bottom: 75px;
+}
+
+.ba-intro .section-number {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 24px;
+
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: #5d947f;
+}
+
+.ba-intro .section-number span {
+  color: #8fb7a7;
+}
+
+.ba-intro h2 {
+  margin: 0;
+  font-size: clamp(48px, 6vw, 84px);
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+  font-weight: 700;
+  color: #1f3e35;
+}
+
+.ba-intro h2 span {
+  color: #5d947f;
+  text-shadow: none;
+}
+
+.ba-intro p {
+  max-width: 580px;
+  margin: 28px 0 0;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #3e5a51;
+}
+
+/* =========================================================
+   INTERACTIVE SLIDER STAGE
+========================================================= */
+
+.ba-stage {
+  position: relative;
+  width: 100%;
+  height: 520px;
+  border-radius: 24px;
+  overflow: hidden;
+  cursor: ew-resize;
+  user-select: none;
+
+  border: 1px solid #dde9e2;
+  box-shadow:
+    0 20px 45px rgba(31, 62, 53, 0.06),
+    0 0 25px rgba(143, 183, 167, 0.15);
+}
+
+/* Pane Base */
+.ba-pane {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.ba-bg-gradient {
+  position: absolute;
+  inset: 0;
+}
+
+/* BEFORE PANE (Soft Muted Warm Tone) */
+.ba-bg--before {
+  background:
+    radial-gradient(
+      circle at 20% 40%,
+      rgba(224, 109, 83, 0.08),
+      transparent 60%
+    ),
+    linear-gradient(
+      135deg,
+      #fdfbfb 0%,
+      #f8f2f0 100%
+    );
+}
+
+/* AFTER PANE (Crisp Sage / White Fresh Tone) */
+.ba-bg--after {
+  background:
+    radial-gradient(
+      circle at 80% 40%,
+      rgba(143, 183, 167, 0.18),
+      transparent 60%
+    ),
+    linear-gradient(
+      135deg,
+      #ffffff 0%,
+      #f0f7f3 100%
+    );
+}
+
+/* Content Container Inside Panes */
+.ba-pane-content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 60px 80px;
+}
+
+.ba-pane-content--before {
+  max-width: 520px;
+}
+
+.ba-pane-content--after {
+  margin-left: auto;
+  max-width: 520px;
+}
+
+/* Badges */
+.ba-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  padding: 6px 14px;
+  border-radius: 50px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  margin-bottom: 24px;
+}
+
+.ba-badge--before {
+  color: #d15136;
+  background: #fdf2ef;
+  border: 1px solid rgba(224, 109, 83, 0.25);
+}
+
+.ba-badge--after {
+  color: #1f3e35;
+  background: #dde9e2;
+  border: 1px solid #8fb7a7;
+}
+
+.ba-badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.ba-dot--red {
+  background: #e06d53;
+  box-shadow: 0 0 6px rgba(224, 109, 83, 0.5);
+}
+
+.ba-dot--green {
+  background: #5d947f;
+  box-shadow: 0 0 6px rgba(93, 148, 127, 0.5);
+}
+
+/* Titles */
+.ba-pane-content h3 {
+  margin: 0 0 32px;
+  font-size: clamp(26px, 3vw, 38px);
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  font-weight: 700;
+  color: #1f3e35;
+}
+
+/* Point Lists */
+.ba-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ba-list li {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #3e5a51;
+}
+
+.ba-cross-icon {
+  width: 26px;
+  height: 26px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-size: 11px;
+  font-weight: 700;
+  color: #d15136;
+  background: #fdf2ef;
+  border: 1px solid rgba(224, 109, 83, 0.3);
+  flex-shrink: 0;
+}
+
+.ba-check-icon {
+  width: 26px;
+  height: 26px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: 700;
+  color: #1f3e35;
+  background: #dde9e2;
+  border: 1px solid #8fb7a7;
+  flex-shrink: 0;
+}
+
+/* =========================================================
+   DRAGGABLE SPLITTER HANDLE
+========================================================= */
+
+.ba-handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.ba-handle-line {
+  flex: 1;
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    #5d947f,
+    transparent
+  );
+  box-shadow: 0 0 8px rgba(93, 148, 127, 0.4);
+}
+
+.ba-handle-button {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 800;
+  color: #ffffff;
+  background: #5d947f;
+  border: 2px solid #ffffff;
+  box-shadow:
+    0 4px 15px rgba(31, 62, 53, 0.18),
+    0 0 0 3px rgba(221, 233, 226, 0.8);
+}
+
+/* Footer Hint */
+.ba-slider-hint {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.ba-slider-hint span {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: #5d947f;
+}
+
+/* =========================================================
+   RESPONSIVE (MOBILE & TABLET STACK)
+========================================================= */
+
+@media (max-width: 900px) {
+  .ba-stage {
+    height: 480px;
+  }
+
+  .ba-pane-content {
+    padding: 40px;
+  }
+
+  .ba-list li {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 650px) {
+  .ba-section {
+    padding: 90px 0;
+  }
+
+  .ba-intro h2 {
+    font-size: clamp(38px, 11vw, 54px);
+  }
+
+  .ba-stage {
+    height: 440px;
+  }
+
+  .ba-pane-content {
+    padding: 30px 20px;
+  }
+
+  .ba-pane-content h3 {
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+
+  .ba-list li {
+    font-size: 13px;
+    gap: 10px;
+  }
+
+  .ba-handle-button {
+    width: 36px;
+    height: 36px;
+    font-size: 9px;
+  }
+}

@@ -1,0 +1,306 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+/* =========================================================
+   WHICH CHARGING SOLUTION SECTION (LIGHT SAGE THEME)
+========================================================= */
+
+.which-charging-section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  padding: 130px 0 150px;
+  overflow: hidden;
+
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #f7faf8;
+  color: #1f3e35;
+}
+
+.which-charging-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      circle at 30% 25%,
+      rgba(143, 183, 167, 0.16),
+      transparent 55%
+    ),
+    radial-gradient(
+      circle at 75% 80%,
+      rgba(93, 148, 127, 0.12),
+      transparent 50%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.4) 0%,
+      rgba(221, 233, 226, 0.5) 100%
+    );
+  z-index: 1;
+}
+
+.which-charging-container {
+  position: relative;
+  z-index: 2;
+  width: min(1200px, calc(100% - 48px));
+  margin: 0 auto;
+}
+
+/* =========================================================
+   INTRO HEADER
+========================================================= */
+
+.which-charging-intro {
+  max-width: 850px;
+  margin-bottom: 75px;
+}
+
+.which-charging-intro .section-number {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 24px;
+
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: #5d947f;
+}
+
+.which-charging-intro .section-number span {
+  color: #8fb7a7;
+}
+
+.which-charging-intro h2 {
+  margin: 0;
+  font-size: clamp(48px, 6vw, 84px);
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+  font-weight: 700;
+  color: #1f3e35;
+}
+
+.which-charging-intro h2 span {
+  color: #5d947f;
+  text-shadow: none;
+}
+
+.which-charging-intro p {
+  max-width: 580px;
+  margin: 28px 0 0;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #3e5a51;
+}
+
+/* =========================================================
+   INTERACTIVE COMPARISON TABLE
+========================================================= */
+
+.decision-table-wrapper {
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid #dde9e2;
+  background: #ffffff;
+  box-shadow: 0 10px 30px rgba(31, 62, 53, 0.05);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+/* Header Columns */
+.decision-table-header {
+  display: grid;
+  grid-template-columns: 2fr 1.5fr 1.6fr 1.4fr 1fr;
+  align-items: center;
+  padding: 20px 32px;
+  border-bottom: 1px solid #dde9e2;
+  background: #f1f7f4;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: #5d947f;
+}
+
+/* Row Items */
+.decision-row {
+  display: grid;
+  grid-template-columns: 2fr 1.5fr 1.6fr 1.4fr 1fr;
+  align-items: center;
+  padding: 24px 32px;
+  border-bottom: 1px solid #eef4f0;
+  background: #ffffff;
+  cursor: pointer;
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.25s ease;
+}
+
+.decision-row:last-child {
+  border-bottom: none;
+}
+
+.decision-row:hover {
+  background: #f6faf8;
+  transform: translateX(4px);
+}
+
+/* Table Cells */
+.col-usecase.row-primary {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.row-index {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #8fb7a7;
+}
+
+.row-title {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #1f3e35;
+}
+
+.row-category-badge {
+  font-size: 12px;
+  font-weight: 500;
+  color: #4a6b61;
+}
+
+.solution-highlight {
+  display: inline-flex;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: #5d947f;
+}
+
+.col-power {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.power-text {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1f3e35;
+}
+
+.tag-pill {
+  width: fit-content;
+  padding: 2px 8px;
+  border-radius: 50px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #1f3e35;
+  background: #dde9e2;
+  border: 1px solid #8fb7a7;
+}
+
+/* Action / WhatsApp Button */
+.col-action {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.row-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 50px;
+  border: 1px solid #8fb7a7;
+  background: #dde9e2;
+  color: #1f3e35;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.decision-row:hover .row-action-btn {
+  background: #5d947f;
+  color: #ffffff;
+  border-color: #5d947f;
+  box-shadow: 0 4px 14px rgba(93, 148, 127, 0.3);
+}
+
+.action-arrow {
+  font-size: 13px;
+  transition: transform 0.3s ease;
+}
+
+.decision-row:hover .action-arrow {
+  transform: translateX(2px) translateY(-2px);
+}
+
+/* =========================================================
+   SUPPORTING FOOTER NOTE
+========================================================= */
+
+.decision-footer-support {
+  margin-top: 36px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.support-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #5d947f;
+  box-shadow: 0 0 8px rgba(93, 148, 127, 0.4);
+  flex-shrink: 0;
+}
+
+.decision-footer-support p {
+  margin: 0;
+  font-size: 13px;
+  color: #4a6b61;
+  line-height: 1.6;
+}
+
+/* =========================================================
+   RESPONSIVE (MOBILE & TABLET STACK)
+========================================================= */
+
+@media (max-width: 950px) {
+  .decision-table-header {
+    display: none;
+  }
+
+  .decision-row {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 22px;
+  }
+
+  .col-action {
+    justify-content: flex-start;
+    margin-top: 6px;
+  }
+}
+
+@media (max-width: 700px) {
+  .which-charging-section {
+    padding: 90px 0;
+  }
+
+  .which-charging-intro h2 {
+    font-size: clamp(38px, 11vw, 54px);
+  }
+
+  .row-title {
+    font-size: 15px;
+  }
+}

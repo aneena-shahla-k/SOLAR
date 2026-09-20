@@ -1,0 +1,422 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+/* =========================================================
+   EV CHARGING BRANDS SECTION (LIGHT SAGE THEME)
+========================================================= */
+
+.ev-brands-section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  padding: 130px 0 150px;
+  overflow: hidden;
+
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #f7faf8;
+  color: #1f3e35;
+}
+
+/* Background Ambient Lighting */
+.ev-brands-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(143, 183, 167, 0.16),
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 20% 80%,
+      rgba(93, 148, 127, 0.12),
+      transparent 50%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.4) 0%,
+      rgba(221, 233, 226, 0.5) 100%
+    );
+  z-index: 1;
+}
+
+.ev-brands-container {
+  position: relative;
+  z-index: 2;
+  width: min(1200px, calc(100% - 48px));
+  margin: 0 auto;
+}
+
+/* =========================================================
+   INTRO HEADER
+========================================================= */
+
+.ev-brands-intro {
+  max-width: 850px;
+  margin-bottom: 75px;
+}
+
+.ev-brands-intro .section-number {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 24px;
+
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: #5d947f;
+}
+
+.ev-brands-intro .section-number span {
+  color: #8fb7a7;
+}
+
+.ev-brands-intro h2 {
+  margin: 0;
+  font-size: clamp(48px, 6vw, 84px);
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+  font-weight: 700;
+  color: #1f3e35;
+}
+
+.ev-brands-intro h2 span {
+  color: #5d947f;
+  text-shadow: none;
+}
+
+.ev-brands-intro p {
+  max-width: 540px;
+  margin: 28px 0 0;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #3e5a51;
+}
+
+/* =========================================================
+   TOP ROW: CHARGER CARDS (DC FAST / AC SLOW)
+========================================================= */
+
+.charger-types-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  margin-bottom: 30px;
+}
+
+.charger-card {
+  position: relative;
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 32px 30px;
+  border-radius: 20px;
+  cursor: pointer;
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  border: 1px solid #dde9e2;
+  background: #ffffff;
+  box-shadow: 0 8px 24px rgba(31, 62, 53, 0.04);
+
+  will-change: transform;
+  transition:
+    transform 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.charger-card:hover {
+  transform: translateY(-4px);
+  border-color: #8fb7a7;
+  box-shadow: 0 14px 32px rgba(31, 62, 53, 0.07);
+}
+
+/* Selected / Active Card Style */
+.charger-card--active {
+  border: 1px solid #5d947f !important;
+  border-top: 3px solid #5d947f !important;
+  background: #f1f7f4 !important;
+  box-shadow:
+    0 16px 36px rgba(93, 148, 127, 0.12),
+    0 0 0 4px rgba(221, 233, 226, 0.6) !important;
+}
+
+.charger-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.charger-pill {
+  padding: 5px 12px;
+  border-radius: 50px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: #1f3e35;
+  background: #dde9e2;
+  border: 1px solid #8fb7a7;
+}
+
+.charger-radio-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid #8fb7a7;
+  background: #ffffff;
+  transition: all 0.3s ease;
+}
+
+.charger-card--active .charger-radio-dot {
+  background: #5d947f;
+  border-color: #5d947f;
+  box-shadow: 0 0 8px rgba(93, 148, 127, 0.45);
+}
+
+.charger-card-body h3 {
+  margin: 20px 0 8px;
+  font-size: clamp(28px, 3.2vw, 40px);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  color: #1f3e35;
+}
+
+.charger-card-body p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #4a6b61;
+}
+
+.charger-card-footer {
+  margin-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: #5d947f;
+}
+
+.charger-card--active .charger-speed-status {
+  color: #1f3e35;
+  font-weight: 800;
+}
+
+/* =========================================================
+   BATTERY METER
+========================================================= */
+
+.ev-battery-meter {
+  padding: 24px 30px;
+  margin-bottom: 80px;
+  border-radius: 18px;
+  background: #ffffff;
+  border: 1px solid #dde9e2;
+  box-shadow: 0 8px 24px rgba(31, 62, 53, 0.04);
+}
+
+.meter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: #5d947f;
+}
+
+.meter-percentage {
+  font-size: 18px;
+  font-weight: 800;
+  color: #1f3e35;
+}
+
+.meter-track {
+  position: relative;
+  width: 100%;
+  height: 8px;
+  border-radius: 20px;
+  background: #dde9e2;
+  overflow: hidden;
+}
+
+.meter-fill {
+  height: 100%;
+  border-radius: 20px;
+  background: linear-gradient(90deg, #8fb7a7, #5d947f);
+  box-shadow: 0 0 12px rgba(93, 148, 127, 0.3);
+}
+
+.meter-scale {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  font-size: 9px;
+  font-weight: 600;
+  color: #8fb7a7;
+}
+
+/* =========================================================
+   BOTTOM ROW: THREE CHARGING BRANDS
+========================================================= */
+
+.ev-brands-bottom-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 22px;
+}
+
+.ev-brands-bottom-header span {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: #1f3e35;
+}
+
+.ev-brands-bottom-header p {
+  margin: 0;
+  font-size: 13px;
+  color: #4a6b61;
+}
+
+.ev-brands-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.ev-brand-tile {
+  position: relative;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 26px;
+  border-radius: 18px;
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  border: 1px solid #dde9e2;
+  background: #ffffff;
+  box-shadow: 0 8px 24px rgba(31, 62, 53, 0.04);
+
+  will-change: transform;
+  transition:
+    transform 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.ev-brand-tile:hover {
+  transform: translateY(-5px);
+  border-color: #8fb7a7;
+  box-shadow:
+    0 16px 36px rgba(31, 62, 53, 0.08),
+    0 0 20px rgba(143, 183, 167, 0.15);
+}
+
+.brand-tile-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand-tile-id {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: #8fb7a7;
+}
+
+.brand-tile-badge {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: #5d947f;
+}
+
+.brand-tile-content h4 {
+  margin: 14px 0 4px;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #1f3e35;
+}
+
+.brand-tile-category {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  color: #5d947f;
+  margin-bottom: 8px;
+}
+
+.brand-tile-content p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.55;
+  color: #4a6b61;
+}
+
+.brand-tile-arrow {
+  position: absolute;
+  right: 22px;
+  bottom: 22px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid #8fb7a7;
+  font-size: 14px;
+  color: #1f3e35;
+  background: #dde9e2;
+  transition: all 0.3s ease;
+}
+
+.ev-brand-tile:hover .brand-tile-arrow {
+  background: #5d947f;
+  border-color: #5d947f;
+  color: #ffffff;
+  transform: rotate(45deg);
+  box-shadow: 0 4px 14px rgba(93, 148, 127, 0.3);
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 950px) {
+  .charger-types-grid {
+    grid-template-columns: 1fr;
+  }
+  .ev-brands-grid {
+    grid-template-columns: 1fr;
+  }
+  .ev-battery-meter {
+    margin-bottom: 60px;
+  }
+}
+
+@media (max-width: 700px) {
+  .ev-brands-section {
+    padding: 90px 0;
+  }
+  .ev-brands-intro h2 {
+    font-size: clamp(38px, 11vw, 54px);
+  }
+  .charger-card {
+    min-height: 190px;
+    padding: 24px;
+  }
+}

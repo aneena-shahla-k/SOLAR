@@ -1,0 +1,564 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+.problem-section {
+  position: relative;
+  min-height: 100vh;
+  padding: 60px 0 80px;
+  overflow: hidden;
+
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #f7faf8;
+  color: #1f3e35;
+}
+
+/* =========================================
+   BACKGROUND IMAGE & OVERLAYS (VISIBLE & CLEAN)
+========================================= */
+
+.problem-bg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(
+      90deg,
+      rgba(247, 250, 248, 0.94) 0%,
+      rgba(247, 250, 248, 0.82) 30%,
+      rgba(221, 233, 226, 0.5) 60%,
+      rgba(247, 250, 248, 0.92) 100%
+    ),
+    url("../../assets/images/solar.jpg");
+  background-size: cover;
+  background-position: center;
+  transform: scale(1.02);
+  opacity: 0.38; /* Visible solar panels without text clash */
+}
+
+.problem-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      circle at 50% 50%,
+      rgba(143, 183, 167, 0.12),
+      transparent 65%
+    );
+}
+
+/* Subtle Soft Ambient */
+.ambient {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(80px);
+}
+
+.ambient-red {
+  width: 180px;
+  height: 180px;
+  left: -80px;
+  top: 35%;
+  background: rgba(224, 109, 83, 0.06);
+}
+
+.ambient-green {
+  width: 200px;
+  height: 200px;
+  right: -80px;
+  top: 35%;
+  background: rgba(93, 148, 127, 0.1);
+}
+
+.ambient-cyan {
+  display: none;
+}
+
+/* =========================================
+   CONTAINER
+========================================= */
+
+.problem-container {
+  position: relative;
+  z-index: 2;
+  width: min(1060px, calc(100% - 36px));
+  margin: 0 auto;
+}
+
+/* =========================================
+   INTRO HEADER (TIGHT & COMPACT)
+========================================= */
+
+.problem-intro {
+  max-width: 540px;
+  margin-bottom: 36px;
+}
+
+.section-number {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: #5d947f;
+}
+
+.section-number span {
+  color: #8fb7a7;
+}
+
+.problem-intro h2 {
+  margin: 0;
+  font-size: clamp(22px, 2.6vw, 34px);
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  font-weight: 700;
+  color: #1f3e35;
+}
+
+.problem-intro h2 span {
+  color: #5d947f;
+}
+
+.problem-intro p {
+  max-width: 440px;
+  margin: 10px 0 0;
+  font-size: 13px;
+  line-height: 1.55;
+  color: #4a6b61;
+}
+
+/* =========================================
+   TRANSFORMATION GRID (TIGHT LAYOUT)
+========================================= */
+
+.transformation-wrapper {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 70px minmax(0, 1fr);
+  gap: 16px;
+  align-items: center;
+}
+
+/* =========================================
+   SIDE HEADINGS
+========================================= */
+
+.side-heading {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 10px;
+
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: #5d947f;
+}
+
+.status-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+}
+
+.red-dot {
+  background: #e06d53;
+  box-shadow: 0 0 5px rgba(224, 109, 83, 0.4);
+}
+
+.green-dot {
+  background: #5d947f;
+  box-shadow: 0 0 5px rgba(93, 148, 127, 0.4);
+}
+
+/* =========================================
+   ULTRA-COMPACT MICRO-CARDS
+========================================= */
+
+.cards-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.modern-card {
+  position: relative;
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 12px;
+  border-radius: 10px;
+
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid #dde9e2;
+  box-shadow: 0 2px 6px rgba(31, 62, 53, 0.02);
+
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+/* PROBLEM CARD */
+.problem-card {
+  border-left: 2.5px solid #e06d53;
+}
+
+.problem-card:hover,
+.problem-card.card-active {
+  transform: translateX(3px);
+  border-color: #e06d53;
+  box-shadow: 0 4px 12px rgba(224, 109, 83, 0.08);
+}
+
+/* SOLUTION CARD */
+.solution-card {
+  border-right: 2.5px solid #5d947f;
+}
+
+.solution-card:hover {
+  transform: translateX(-3px);
+  border-color: #5d947f;
+  box-shadow: 0 4px 12px rgba(93, 148, 127, 0.08);
+}
+
+/* =========================================
+   CARD CONTENT
+========================================= */
+
+.card-index {
+  position: absolute;
+  top: 5px;
+  right: 8px;
+  font-size: 7.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #8fb7a7;
+}
+
+.card-icon {
+  flex: 0 0 26px;
+  width: 26px;
+  height: 26px;
+  display: grid;
+  place-items: center;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.red-icon {
+  color: #d15136;
+  background: #fdf2ef;
+  border: 1px solid rgba(224, 109, 83, 0.2);
+}
+
+.green-icon {
+  color: #1f3e35;
+  background: #dde9e2;
+  border: 1px solid rgba(93, 148, 127, 0.25);
+}
+
+.card-copy {
+  padding-right: 8px;
+}
+
+.card-copy h3 {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.25;
+  font-weight: 700;
+  color: #1f3e35;
+}
+
+.card-copy p {
+  margin: 1px 0 0;
+  font-size: 10.5px;
+  line-height: 1.35;
+  color: #4a6b61;
+}
+
+.problem-indicator,
+.solution-indicator {
+  display: none;
+}
+
+/* =========================================
+   SLIM CENTER ENERGY TRACK
+========================================= */
+
+.energy-center {
+  position: relative;
+  height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.energy-rail {
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  width: 1.5px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(93, 148, 127, 0.35),
+    rgba(93, 148, 127, 0.65),
+    transparent
+  );
+}
+
+.energy-particle {
+  position: absolute;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: #5d947f;
+  box-shadow: 0 0 6px rgba(93, 148, 127, 0.6);
+}
+
+.energy-core {
+  position: relative;
+  z-index: 5;
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+
+  background: #ffffff;
+  color: #1f3e35;
+  border: 1.5px solid #5d947f;
+  box-shadow: 0 3px 10px rgba(31, 62, 53, 0.05);
+  font-size: 14px;
+}
+
+.energy-label {
+  position: absolute;
+  bottom: 30px;
+  writing-mode: vertical-rl;
+  font-size: 7.5px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: #8fb7a7;
+}
+
+.energy-orbit {
+  position: absolute;
+  border: 1px dashed rgba(143, 183, 167, 0.3);
+  border-radius: 50%;
+}
+
+.orbit-one {
+  width: 76px;
+  height: 76px;
+  animation: orbitRotate 9s linear infinite;
+}
+
+.orbit-two {
+  width: 56px;
+  height: 56px;
+  border-color: rgba(93, 148, 127, 0.2);
+  animation: orbitRotate 7s linear infinite reverse;
+}
+
+@keyframes orbitRotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =========================================
+   MINIMAL FINAL CONNECTED SYSTEM
+========================================= */
+
+.connected-system {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 45px auto 0;
+  max-width: 680px;
+}
+
+.system-node {
+  position: relative;
+  width: 68px;
+  height: 68px;
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+
+  background: #ffffff;
+  border: 1.5px solid #dde9e2;
+  box-shadow: 0 3px 8px rgba(31, 62, 53, 0.03);
+}
+
+.system-node span {
+  margin-bottom: 2px;
+  color: #5d947f;
+  font-size: 13px;
+}
+
+.system-node strong {
+  font-size: 7.5px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #1f3e35;
+}
+
+.system-node small {
+  color: #8fb7a7;
+  font-size: 7px;
+  font-weight: 600;
+}
+
+.active-node {
+  border-color: #5d947f;
+  box-shadow:
+    0 6px 14px rgba(93, 148, 127, 0.1),
+    0 0 0 2.5px rgba(221, 233, 226, 0.6);
+}
+
+.system-connector {
+  position: relative;
+  width: 45px;
+  height: 1.5px;
+  background: linear-gradient(90deg, #dde9e2, #8fb7a7, #dde9e2);
+}
+
+.system-connector i {
+  position: absolute;
+  top: -2px;
+  left: 0;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #5d947f;
+  animation: connectorFlow 1.7s linear infinite;
+}
+
+@keyframes connectorFlow {
+  from { left: 0; }
+  to { left: calc(100% - 5px); }
+}
+
+.final-line {
+  margin-top: 18px;
+  text-align: center;
+}
+
+.final-line span {
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  color: #1f3e35;
+}
+
+/* =========================================
+   RESPONSIVE STYLES
+========================================= */
+
+@media (max-width: 850px) {
+  .transformation-wrapper {
+    grid-template-columns: minmax(0, 1fr) 50px minmax(0, 1fr);
+    gap: 10px;
+  }
+
+  .energy-center {
+    height: 250px;
+  }
+
+  .connected-system {
+    transform: scale(0.9);
+  }
+}
+
+@media (max-width: 700px) {
+  .problem-section {
+    padding: 50px 0 65px;
+  }
+
+  .transformation-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .side-block {
+    width: 100%;
+  }
+
+  .problem-block { order: 1; }
+  .energy-center {
+    order: 2;
+    width: 100%;
+    height: 50px;
+    margin: 2px 0;
+  }
+  .solution-block { order: 3; }
+
+  .energy-rail {
+    top: 50%;
+    left: 12%;
+    right: 12%;
+    width: auto;
+    height: 1.5px;
+    background: linear-gradient(90deg, transparent, #5d947f, transparent);
+  }
+
+  .energy-particle {
+    top: 50%;
+    left: 12%;
+    transform: translateY(-50%);
+  }
+
+  .energy-core {
+    width: 36px;
+    height: 36px;
+    font-size: 13px;
+  }
+
+  .energy-label,
+  .orbit-one,
+  .orbit-two {
+    display: none;
+  }
+
+  .connected-system {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 8px;
+    transform: none;
+  }
+
+  .system-node {
+    width: 65px;
+    height: 65px;
+    margin: auto;
+  }
+
+  .system-connector {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
