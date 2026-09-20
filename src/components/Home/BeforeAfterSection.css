@@ -8,9 +8,8 @@
   position: relative;
   width: 100%;
   min-height: 100vh;
-  padding: 130px 0 160px;
+  padding: 110px 0 140px;
   overflow: hidden;
-
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   background: #f7faf8;
   color: #1f3e35;
@@ -38,7 +37,7 @@
 .ba-container {
   position: relative;
   z-index: 2;
-  width: min(1200px, calc(100% - 48px));
+  width: min(1200px, calc(100% - 40px));
   margin: 0 auto;
 }
 
@@ -48,15 +47,14 @@
 
 .ba-intro {
   max-width: 850px;
-  margin-bottom: 75px;
+  margin-bottom: 50px;
 }
 
 .ba-intro .section-number {
   display: flex;
   align-items: center;
   gap: 14px;
-  margin-bottom: 24px;
-
+  margin-bottom: 20px;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.16em;
@@ -69,23 +67,22 @@
 
 .ba-intro h2 {
   margin: 0;
-  font-size: clamp(48px, 6vw, 84px);
-  line-height: 0.98;
-  letter-spacing: -0.04em;
+  font-size: clamp(34px, 5.5vw, 68px);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
   font-weight: 700;
   color: #1f3e35;
 }
 
 .ba-intro h2 span {
   color: #5d947f;
-  text-shadow: none;
 }
 
 .ba-intro p {
   max-width: 580px;
-  margin: 28px 0 0;
-  font-size: 16px;
-  line-height: 1.7;
+  margin: 20px 0 0;
+  font-size: 15px;
+  line-height: 1.65;
   color: #3e5a51;
 }
 
@@ -96,19 +93,20 @@
 .ba-stage {
   position: relative;
   width: 100%;
-  height: 520px;
+  min-height: 480px;
   border-radius: 24px;
   overflow: hidden;
   cursor: ew-resize;
   user-select: none;
-
+  touch-action: pan-y; /* Allows vertical scrolling while enabling horizontal drag */
   border: 1px solid #dde9e2;
+  background: #ffffff;
   box-shadow:
     0 20px 45px rgba(31, 62, 53, 0.06),
     0 0 25px rgba(143, 183, 167, 0.15);
 }
 
-/* Pane Base */
+/* Base Panes */
 .ba-pane {
   position: absolute;
   inset: 0;
@@ -125,14 +123,14 @@
 .ba-bg--before {
   background:
     radial-gradient(
-      circle at 20% 40%,
+      circle at 30% 40%,
       rgba(224, 109, 83, 0.08),
       transparent 60%
     ),
     linear-gradient(
       135deg,
       #fdfbfb 0%,
-      #f8f2f0 100%
+      #f9f3f1 100%
     );
 }
 
@@ -140,7 +138,7 @@
 .ba-bg--after {
   background:
     radial-gradient(
-      circle at 80% 40%,
+      circle at 70% 40%,
       rgba(143, 183, 167, 0.18),
       transparent 60%
     ),
@@ -156,19 +154,13 @@
   position: relative;
   z-index: 2;
   height: 100%;
+  width: 100%;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 60px 80px;
-}
-
-.ba-pane-content--before {
-  max-width: 520px;
-}
-
-.ba-pane-content--after {
-  margin-left: auto;
-  max-width: 520px;
+  align-items: flex-start;
+  padding: 50px 60px;
 }
 
 /* Badges */
@@ -179,10 +171,10 @@
   width: fit-content;
   padding: 6px 14px;
   border-radius: 50px;
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 700;
-  letter-spacing: 0.16em;
-  margin-bottom: 24px;
+  letter-spacing: 0.12em;
+  margin-bottom: 22px;
 }
 
 .ba-badge--before {
@@ -215,10 +207,10 @@
 
 /* Titles */
 .ba-pane-content h3 {
-  margin: 0 0 32px;
-  font-size: clamp(26px, 3vw, 38px);
+  margin: 0 0 28px;
+  font-size: clamp(22px, 2.8vw, 34px);
   line-height: 1.15;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.02em;
   font-weight: 700;
   color: #1f3e35;
 }
@@ -237,7 +229,7 @@
   display: flex;
   align-items: center;
   gap: 14px;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
   color: #3e5a51;
 }
@@ -320,65 +312,56 @@
 
 /* Footer Hint */
 .ba-slider-hint {
-  margin-top: 30px;
+  margin-top: 24px;
   text-align: center;
 }
 
 .ba-slider-hint span {
   font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.18em;
   color: #5d947f;
 }
 
 /* =========================================================
-   RESPONSIVE (MOBILE & TABLET STACK)
+   RESPONSIVE (MOBILE OPTIMIZATIONS)
 ========================================================= */
 
-@media (max-width: 900px) {
-  .ba-stage {
-    height: 480px;
-  }
-
-  .ba-pane-content {
-    padding: 40px;
-  }
-
-  .ba-list li {
-    font-size: 14px;
-  }
-}
-
-@media (max-width: 650px) {
+@media (max-width: 768px) {
   .ba-section {
-    padding: 90px 0;
+    padding: 70px 0 90px;
   }
 
-  .ba-intro h2 {
-    font-size: clamp(38px, 11vw, 54px);
+  .ba-container {
+    width: calc(100% - 32px);
   }
 
   .ba-stage {
-    height: 440px;
+    min-height: 440px;
+    border-radius: 18px;
   }
 
   .ba-pane-content {
-    padding: 30px 20px;
+    padding: 36px 24px;
   }
 
   .ba-pane-content h3 {
-    font-size: 22px;
-    margin-bottom: 20px;
+    font-size: 20px;
+    margin-bottom: 22px;
+  }
+
+  .ba-list {
+    gap: 12px;
   }
 
   .ba-list li {
-    font-size: 13px;
+    font-size: 13.5px;
     gap: 10px;
   }
 
   .ba-handle-button {
-    width: 36px;
-    height: 36px;
+    width: 38px;
+    height: 38px;
     font-size: 9px;
   }
 }

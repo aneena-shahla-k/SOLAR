@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
 import "./BeforeAfterSection.css";
 
@@ -21,30 +21,42 @@ export default function BeforeAfterSection() {
   const [isDragging, setIsDragging] = useState(false);
   const containerRef = useRef(null);
 
-  const handleMove = (clientX) => {
+  const handleMove = useCallback((clientX) => {
     if (!containerRef.current) return;
     const rect = containerRef.current.getBoundingClientRect();
     const x = clientX - rect.left;
     const percentage = Math.min(Math.max((x / rect.width) * 100, 5), 95);
     setSliderPos(percentage);
-  };
+  }, []);
 
-  const handleTouchMove = (e) => {
-    if (isDragging) {
-      handleMove(e.touches[0].clientX);
-    }
-  };
+  // Global listeners while dragging so fast gestures or touch off-screen don't break
+  useEffect(() => {
+    const handleGlobalMouseMove = (e) => {
+      if (isDragging) handleMove(e.clientX);
+    };
+    const handleGlobalTouchMove = (e) => {
+      if (isDragging && e.touches[0]) handleMove(e.touches[0].clientX);
+    };
+    const handleStopDragging = () => setIsDragging(false);
 
-  const handleMouseMove = (e) => {
     if (isDragging) {
-      handleMove(e.clientX);
+      window.addEventListener("mousemove", handleGlobalMouseMove);
+      window.addEventListener("mouseup", handleStopDragging);
+      window.addEventListener("touchmove", handleGlobalTouchMove);
+      window.addEventListener("touchend", handleStopDragging);
     }
-  };
+
+    return () => {
+      window.removeEventListener("mousemove", handleGlobalMouseMove);
+      window.removeEventListener("mouseup", handleStopDragging);
+      window.removeEventListener("touchmove", handleGlobalTouchMove);
+      window.removeEventListener("touchend", handleStopDragging);
+    };
+  }, [isDragging, handleMove]);
 
   return (
     <section className="ba-section">
       <div className="ba-container">
-
         {/* HEADER */}
         <motion.div
           className="ba-intro"
@@ -64,8 +76,8 @@ export default function BeforeAfterSection() {
           </h2>
 
           <p>
-            Drag the splitter to see how fragmented utility dependency transforms into a unified, 
-            resilient on-site clean energy system.
+            Drag the splitter to see how fragmented utility dependency transforms
+            into a unified, resilient on-site clean energy system.
           </p>
         </motion.div>
 
@@ -73,22 +85,23 @@ export default function BeforeAfterSection() {
         <div
           ref={containerRef}
           className="ba-stage"
-          onMouseDown={() => setIsDragging(true)}
-          onMouseUp={() => setIsDragging(false)}
-          onMouseLeave={() => setIsDragging(false)}
-          onMouseMove={handleMouseMove}
-          onTouchStart={() => setIsDragging(true)}
-          onTouchEnd={() => setIsDragging(false)}
-          onTouchMove={handleTouchMove}
+          onMouseDown={(e) => {
+            setIsDragging(true);
+            handleMove(e.clientX);
+          }}
+          onTouchStart={(e) => {
+            setIsDragging(true);
+            if (e.touches[0]) handleMove(e.touches[0].clientX);
+          }}
         >
-          {/* AFTER SIDE (BOTTOM LAYER / FULL GREEN ECOSYSTEM) */}
+          {/* AFTER SIDE (BASE LAYER) */}
           <div className="ba-pane ba-pane--after">
             <div className="ba-bg-gradient ba-bg--after" />
-            
-            <div className="ba-pane-content ba-pane-content--after">
+
+            <div className="ba-pane-content">
               <div className="ba-badge ba-badge--after">
                 <span className="ba-badge-dot ba-dot--green" />
-                AFTER // SECURED INFRASTRUCTURE
+                AFTER {"//"} SECURED INFRASTRUCTURE
               </div>
 
               <h3>ENGINEERED INDEPENDENCE</h3>
@@ -104,17 +117,17 @@ export default function BeforeAfterSection() {
             </div>
           </div>
 
-          {/* BEFORE SIDE (TOP LAYER / CLIPPED WITH SLIDER POSITION) */}
+          {/* BEFORE SIDE (OVERLAY LAYER - CLIPPED) */}
           <div
             className="ba-pane ba-pane--before"
             style={{ clipPath: `inset(0 ${100 - sliderPos}% 0 0)` }}
           >
             <div className="ba-bg-gradient ba-bg--before" />
 
-            <div className="ba-pane-content ba-pane-content--before">
+            <div className="ba-pane-content">
               <div className="ba-badge ba-badge--before">
                 <span className="ba-badge-dot ba-dot--red" />
-                BEFORE // FRAGMENTED RISK
+                BEFORE {"//"} FRAGMENTED RISK
               </div>
 
               <h3>UTILITY VULNERABILITY</h3>
@@ -131,10 +144,7 @@ export default function BeforeAfterSection() {
           </div>
 
           {/* DRAGGABLE SPLITTER HANDLE */}
-          <div
-            className="ba-handle"
-            style={{ left: `${sliderPos}%` }}
-          >
+          <div className="ba-handle" style={{ left: `${sliderPos}%` }}>
             <div className="ba-handle-line" />
             <div className="ba-handle-button">
               <span>◀</span>
@@ -142,14 +152,12 @@ export default function BeforeAfterSection() {
             </div>
             <div className="ba-handle-line" />
           </div>
-
         </div>
 
         {/* QUICK CONTROL HELPER */}
         <div className="ba-slider-hint">
           <span>◀ DRAG TO EXPLORE THE PAYOFF ▶</span>
         </div>
-
       </div>
     </section>
   );
