@@ -2,8 +2,6 @@ import React, { useLayoutEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "./Hero.css";
-import vid from "../../assets/hero-video.mp4";
-
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Hero() {
@@ -125,7 +123,7 @@ export default function Hero() {
         <video
           ref={videoRef}
           className="hero-video"
-          src={vid}
+          src="https://res.cloudinary.com/zu7jndeq/video/upload/v1789976262/Solar_energy_charging_electric_v_E2_80_A6_20260921125730-ezremove_v3fqwa.mp4"
           
           playsInline
           autoPlay
