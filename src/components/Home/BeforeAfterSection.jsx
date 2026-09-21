@@ -19,17 +19,17 @@ const afterPoints = [
 export default function BeforeAfterSection() {
   const [sliderPos, setSliderPos] = useState(50);
   const [isDragging, setIsDragging] = useState(false);
+  const [mobileTab, setMobileTab] = useState("after"); // 'before' | 'after'
   const containerRef = useRef(null);
 
   const handleMove = useCallback((clientX) => {
     if (!containerRef.current) return;
     const rect = containerRef.current.getBoundingClientRect();
     const x = clientX - rect.left;
-    const percentage = Math.min(Math.max((x / rect.width) * 100, 5), 95);
+    const percentage = Math.min(Math.max((x / rect.width) * 100, 10), 90);
     setSliderPos(percentage);
   }, []);
 
-  // Global listeners while dragging so fast gestures or touch off-screen don't break
   useEffect(() => {
     const handleGlobalMouseMove = (e) => {
       if (isDragging) handleMove(e.clientX);
@@ -81,10 +81,30 @@ export default function BeforeAfterSection() {
           </p>
         </motion.div>
 
-        {/* DRAGGABLE COMPARISON SLIDER */}
+        {/* MOBILE TOGGLE SWITCH (Visible only on mobile) */}
+        <div className="ba-mobile-toggle">
+          <button
+            type="button"
+            className={`ba-toggle-btn ${mobileTab === "before" ? "active active--before" : ""}`}
+            onClick={() => setMobileTab("before")}
+          >
+            <span className="ba-badge-dot ba-dot--red" />
+            BEFORE
+          </button>
+          <button
+            type="button"
+            className={`ba-toggle-btn ${mobileTab === "after" ? "active active--after" : ""}`}
+            onClick={() => setMobileTab("after")}
+          >
+            <span className="ba-badge-dot ba-dot--green" />
+            AFTER
+          </button>
+        </div>
+
+        {/* INTERACTIVE COMPARISON STAGE */}
         <div
           ref={containerRef}
-          className="ba-stage"
+          className={`ba-stage mobile-show-${mobileTab}`}
           onMouseDown={(e) => {
             setIsDragging(true);
             handleMove(e.clientX);
@@ -94,11 +114,14 @@ export default function BeforeAfterSection() {
             if (e.touches[0]) handleMove(e.touches[0].clientX);
           }}
         >
-          {/* AFTER SIDE (BASE LAYER) */}
-          <div className="ba-pane ba-pane--after">
+          {/* AFTER SIDE (RIGHT ON DESKTOP) */}
+          <div
+            className="ba-pane ba-pane--after"
+            style={{ "--clip-pos": `${sliderPos}%` }}
+          >
             <div className="ba-bg-gradient ba-bg--after" />
 
-            <div className="ba-pane-content">
+            <div className="ba-pane-content ba-content--after">
               <div className="ba-badge ba-badge--after">
                 <span className="ba-badge-dot ba-dot--green" />
                 AFTER {"//"} SECURED INFRASTRUCTURE
@@ -117,14 +140,14 @@ export default function BeforeAfterSection() {
             </div>
           </div>
 
-          {/* BEFORE SIDE (OVERLAY LAYER - CLIPPED) */}
+          {/* BEFORE SIDE (LEFT ON DESKTOP) */}
           <div
             className="ba-pane ba-pane--before"
-            style={{ clipPath: `inset(0 ${100 - sliderPos}% 0 0)` }}
+            style={{ "--clip-pos": `${100 - sliderPos}%` }}
           >
             <div className="ba-bg-gradient ba-bg--before" />
 
-            <div className="ba-pane-content">
+            <div className="ba-pane-content ba-content--before">
               <div className="ba-badge ba-badge--before">
                 <span className="ba-badge-dot ba-dot--red" />
                 BEFORE {"//"} FRAGMENTED RISK
@@ -143,7 +166,7 @@ export default function BeforeAfterSection() {
             </div>
           </div>
 
-          {/* DRAGGABLE SPLITTER HANDLE */}
+          {/* DRAGGABLE SPLITTER HANDLE (Desktop Only) */}
           <div className="ba-handle" style={{ left: `${sliderPos}%` }}>
             <div className="ba-handle-line" />
             <div className="ba-handle-button">
@@ -154,7 +177,7 @@ export default function BeforeAfterSection() {
           </div>
         </div>
 
-        {/* QUICK CONTROL HELPER */}
+        {/* QUICK CONTROL HELPER (Desktop Only) */}
         <div className="ba-slider-hint">
           <span>◀ DRAG TO EXPLORE THE PAYOFF ▶</span>
         </div>
